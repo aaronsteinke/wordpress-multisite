@@ -36,7 +36,8 @@ RUN set -ex; \
 # upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
 	tar -xzf wordpress.tar.gz -C /usr/src/; \
 	rm wordpress.tar.gz; \
-	chown -R www-data:www-data /usr/src/wordpress
+	chown -R www-data:www-data /usr/src/wordpress; \
+	echo "define( 'WP_ALLOW_MULTISITE', true );" >> /usr/src/wordpress/wp-config-sample.php
 
 COPY docker-entrypoint.sh /usr/local/bin/
 
